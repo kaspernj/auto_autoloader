@@ -1,3 +1,3 @@
 class TestClass
-  AutoAutoloader.autoload_sub_classes(self, __dir__)
+  AutoAutoloader.autoload_sub_classes(self, File.dirname(__FILE__))
 end
