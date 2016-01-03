@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["kaspernj"]
   s.date = "2016-01-03"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Autoload constants in natural subfolders from the original class in Ruby with a single line of code."
   s.email = "k@spernj.org"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "auto_autoloader.gemspec",
     "lib/auto_autoloader.rb",
     "spec/auto_autoloader_spec.rb",
     "spec/spec_helper.rb",
@@ -37,7 +38,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/kaspernj/auto_autoloader"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.2.2"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Autoload constants in natural subfolders from the original class in Ruby with a single line of code."
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
