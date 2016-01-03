@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "auto_autoloader"
   gem.homepage = "http://github.com/kaspernj/auto_autoloader"
   gem.license = "MIT"
-  gem.summary = %(TODO: one-line summary of your gem)
-  gem.description = %(TODO: longer description of your gem)
+  gem.summary = %(Autoload constants in natural subfolders from the original class in Ruby with a single line of code.)
+  gem.description = %(Autoload constants in natural subfolders from the original class in Ruby with a single line of code.)
   gem.email = "k@spernj.org"
   gem.authors = ["kaspernj"]
   # dependencies defined in Gemfile
