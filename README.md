@@ -13,21 +13,14 @@ gem "auto_autoloader"
 File: "lib/my_class.rb"
 ```ruby
 class MyClass
-  AutoAutoloader.autoload_sub_classes(self, __dir__)
-end
-```
-
-Or in Ruby 1.9:
-```ruby
-class MyClass
-  AutoAutoloader.autoload_sub_classes(self, File.dirname(__FILE__))
+  AutoAutoloader.autoload_sub_classes(self, __FILE__)
 end
 ```
 
 It will now try to autoload "MyClass:SubClass" in the following path: "lib/my_class/sub_class.rb".
 
 ## Contributing to auto_autoloader
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.

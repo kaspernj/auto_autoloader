@@ -3,7 +3,7 @@ class AutoAutoloader
     base.extend AutoAutoloader::ClassMethods
 
     base.class_eval do
-      @autoload_path = path
+      @autoload_path = File.dirname(path)
     end
   end
 
