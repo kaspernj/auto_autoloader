@@ -2,7 +2,22 @@
 
 # auto_autoloader
 
-Description goes here.
+## Install
+
+```ruby
+gem "auto_autoloader"
+```
+
+## Usage
+
+File: "lib/my_class.rb"
+```ruby
+class MyClass
+  AutoAutoloader.autoload_sub_classes(self, __dir__)
+end
+```
+
+It will now try to autoload "MyClass:SubClass" in the following path: "lib/my_class/sub_class.rb".
 
 ## Contributing to auto_autoloader
  
