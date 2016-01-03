@@ -17,6 +17,13 @@ class MyClass
 end
 ```
 
+Or in Ruby 1.9:
+```ruby
+class MyClass
+  AutoAutoloader.autoload_sub_classes(self, File.dirname(__FILE__))
+end
+```
+
 It will now try to autoload "MyClass:SubClass" in the following path: "lib/my_class/sub_class.rb".
 
 ## Contributing to auto_autoloader
