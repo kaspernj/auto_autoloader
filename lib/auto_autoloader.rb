@@ -1,32 +1,42 @@
 class AutoAutoloader
   def self.autoload_sub_classes(base, path)
-    base.extend AutoAutoloader::ClassMethods
+    loader = ::AutoAutoloader.new(base: base, path: path)
 
-    base.class_eval do
-      @autoload_path = File.dirname(path)
+    if loader.rails?
+      loader.autoload_by_active_support_and_file_scan
+    else
+      loader.autoload_with_sub_class_autoloader
     end
   end
 
-  module ClassMethods
-    def const_missing(const_name)
-      require "string-cases"
+  def initialize(args)
+    @base = args.fetch(:base)
+    @path = args.fetch(:path)
+  end
 
-      last_name = const_name.to_s.split("::").last
-      last_class_name = name.to_s.split("::").last
+  def autoload_with_sub_class_autoloader
+    require_relative "auto_autoloader/sub_class_autoloader"
+    @base.extend ::AutoAutoloader::SubClassAutoloader::ClassMethods
+    path = @path
 
-      path = "#{@autoload_path}/#{::StringCases.camel_to_snake(last_class_name)}/#{::StringCases.camel_to_snake(last_name)}.rb"
-
-      if File.exist?(path)
-        require path
-
-        if const_defined?(last_name)
-          return const_get(last_name)
-        else
-          raise LoadError, "Expected path to define #{const_name} but it didnt: #{path}"
-        end
-      end
-
-      super
+    @base.class_eval do
+      @autoload_path = ::File.dirname(path)
     end
+  end
+
+  def autoload_by_active_support_and_file_scan
+    dir_path = "#{::File.dirname(@path)}/#{::StringCases.camel_to_snake(@base.name.split("::").last)}"
+
+    ::Dir.foreach(dir_path) do |file|
+      next unless (match = file.match(/\A(.+)\.rb\Z/))
+      const_snake_case = match[1]
+      const_camel_case = ::StringCases.snake_to_camel(const_snake_case)
+
+      base.autoload(const_camel_case, "#{dir_path}/#{file}")
+    end
+  end
+
+  def rails?
+    @rails ||= ::Object.const_defined?("Rails")
   end
 end
