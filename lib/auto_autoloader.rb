@@ -7,6 +7,10 @@ class AutoAutoloader
     else
       loader.autoload_with_sub_class_autoloader
     end
+  rescue Exception => e
+    puts e.inspect
+    puts e.backtrace
+    raise e
   end
 
   def initialize(args)
@@ -32,7 +36,7 @@ class AutoAutoloader
       const_snake_case = match[1]
       const_camel_case = ::StringCases.snake_to_camel(const_snake_case)
 
-      base.autoload(const_camel_case, "#{dir_path}/#{file}")
+      @base.autoload(const_camel_case, "#{dir_path}/#{file}")
     end
   end
 
