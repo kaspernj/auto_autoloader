@@ -7,10 +7,6 @@ class AutoAutoloader
     else
       loader.autoload_with_sub_class_autoloader
     end
-  rescue Exception => e
-    puts e.inspect
-    puts e.backtrace
-    raise e
   end
 
   def initialize(args)
