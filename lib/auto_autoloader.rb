@@ -34,6 +34,10 @@ class AutoAutoloader
 
       @base.autoload(const_camel_case, "#{dir_path}/#{file}")
     end
+  # rubocop:disable Lint/HandleExceptions
+  rescue Errno::ENOENT
+    # rubocop:enable Lint/HandleExceptions
+    # The directory doesn't exist. Don't autoload it.
   end
 
   def rails?
