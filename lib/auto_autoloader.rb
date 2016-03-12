@@ -1,3 +1,5 @@
+require "string-cases"
+
 class AutoAutoloader
   def self.autoload_sub_classes(base, path)
     base.extend AutoAutoloader::ClassMethods
